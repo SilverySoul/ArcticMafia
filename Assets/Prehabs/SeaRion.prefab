@@ -279,8 +279,8 @@ MonoBehaviour:
     attack_power: 1
     defence_power: 1
     exp: 10
+    angular: 30
   span_search_new_target: 1
-  angular: 30
   debug_target_view: {fileID: 0}
 --- !u!114 &114912836827864958
 MonoBehaviour:
@@ -295,6 +295,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack_span: 0.5
   attacks_list: []
+  advance_dist: 15
+  advance_velocity_max: 15
 --- !u!135 &135342468869089308
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -317,7 +319,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.82
+  m_Radius: 1.53
   m_Center: {x: 0, y: 0.93, z: 0}
 --- !u!195 &195100708135204342
 NavMeshAgent:

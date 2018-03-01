@@ -13,6 +13,8 @@ namespace Sho
 			Json,
 			// has Gun
 			Gun,
+			// to take some gold
+			Gold,
 		}
 		[SerializeField]
 		private List<Penguin> penguins = new List<Penguin>();

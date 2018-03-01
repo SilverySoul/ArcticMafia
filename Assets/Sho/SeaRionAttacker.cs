@@ -14,6 +14,12 @@ namespace Sho
 		[SerializeField]
 		List<Penguin> attacks_list = new List<Penguin>();
 
+		[SerializeField]
+		private float advance_dist = 30.0f;
+		[SerializeField]
+		private float advance_velocity_max = 40.0f;
+
+
 		// Use this for initialization
 		void Start()
 		{
@@ -25,7 +31,10 @@ namespace Sho
 		// Update is called once per frame
 		void Update()
 		{
-
+			if (parent.Rigid.velocity.magnitude >= advance_velocity_max)
+			{
+				parent.Rigid.velocity = parent.Rigid.velocity.normalized * advance_velocity_max;
+			}
 		}
 
 		public IEnumerator AttackToPenguin()
@@ -40,6 +49,7 @@ namespace Sho
 				else
 				{
 					parent.AttackMode = true;
+					parent.Rigid.AddForce(this.transform.forward * advance_dist, ForceMode.Impulse);
 					yield return new WaitForSeconds(attack_span);
 					Attack();
 				}
