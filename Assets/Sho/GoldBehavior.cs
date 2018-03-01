@@ -6,6 +6,7 @@ namespace Sho
 {
 	public class GoldBehavior : MonoBehaviour
 	{
+        public AudioPenguinScript SoundScript;
 		[SerializeField]
 		private int gold_count = 10;
 
@@ -51,6 +52,7 @@ namespace Sho
 				var p = other.gameObject.GetComponent<Penguin>();
 				if(p.Type == PenguinManager.PenguinType.Gold)
 				{
+                    SoundScript.PenguingNoiseSound();
 					var gold = other.gameObject.GetComponent<TakeGoldBehavior>();
 					gold.TakeGold(GoldCount);
 					Destroy(this.GetComponent<Rigidbody>());

@@ -6,6 +6,9 @@ namespace Sho
 {
 	public class GunBehavior : Internal.PenguinBehavior
 	{
+
+        public AudioPenguinScript SoundScript;
+
 		private float shot_dist = 5.0f;
 
 		private Coroutine attack = null;
@@ -50,6 +53,7 @@ namespace Sho
 				yield return new WaitForSeconds(Storage.GunAttackSpan);
 				for (int i = 0; i < 3; i++)
 				{
+                    SoundScript.PenguinShootSound();
 					var n = Instantiate(Storage.BulletPrehab);
 					//n.transform.LookAt(Target.transform);
 					n.transform.rotation = this.transform.rotation;

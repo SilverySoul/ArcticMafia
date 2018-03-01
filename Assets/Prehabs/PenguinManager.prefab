@@ -54,3 +54,4 @@ MonoBehaviour:
   penguins: []
   source_of_penguin: {fileID: 114331307257056676, guid: c5e79eb6298138d468ccb6ccaf847ed8,
     type: 2}
+  penguins_count_max_in_field: 20

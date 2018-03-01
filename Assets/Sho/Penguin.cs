@@ -7,6 +7,8 @@ namespace Sho
 
 	public class Penguin : MonoBehaviour, IStatusBehavior
 	{
+        public AudioPenguinScript SoundScript;
+
 		// unique
 		[SerializeField]
 		private int id = -1;
@@ -41,6 +43,7 @@ namespace Sho
 		// Use this for initialization
 		void Start()
 		{
+            SoundScript.PenguingSpawnSound();
 			manager = GameObject.Find("PenguinManager").GetComponent<PenguinManager>();
 		}
 
@@ -52,10 +55,13 @@ namespace Sho
 
 		public bool Damage(int damage)
 		{
+            
 			status.Hp -= damage;
 			if (status.Hp <= 0)
 			{
-				Debug.Log("Killed Penguin No." + ID.ToString());
+                SoundScript.PenguingDieSound();
+
+                Debug.Log("Killed Penguin No." + ID.ToString());
 				Destroy(this.gameObject);
 				return true;
 			}

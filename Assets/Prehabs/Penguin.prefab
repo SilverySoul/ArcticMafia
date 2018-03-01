@@ -29,6 +29,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1072819273462936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4611782277358032}
+  - component: {fileID: 82329618048401814}
+  - component: {fileID: 114824839366248678}
+  m_Layer: 0
+  m_Name: AudioPenguin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1768816813957998
 GameObject:
   m_ObjectHideFlags: 1
@@ -103,8 +120,22 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4212355835542118}
+  - {fileID: 4611782277358032}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4611782277358032
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1072819273462936}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.373039, y: 21.3, z: 8.887131}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4389734057109928}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23661745094405658
 MeshRenderer:
@@ -208,6 +239,93 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &82329618048401814
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1072819273462936}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243394629519565112, guid: 5ce1beb246b938b49bfd03707980ade4,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0.002
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.29012632
+      value: 0.32459426
+      inSlope: -1.0019541
+      outSlope: -1.0019541
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: -1.002004
+      outSlope: -1.002004
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!102 &102282778065341656
 TextMesh:
   serializedVersion: 3
@@ -240,6 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904a22437078eb0489ea92a23f11e598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundScript: {fileID: 114824839366248678}
   id: -1
   status:
     hp: 10
@@ -248,6 +367,23 @@ MonoBehaviour:
     defence_power: 1
     exp: 10
     angular: 30
+--- !u!114 &114824839366248678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1072819273462936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc5bd38c0ec7f24c989e1948caee87b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PenguingSpawn: {fileID: 8300000, guid: 0670b5a1bd28c2b40ada2fcf7e782e2e, type: 3}
+  PenguingDie: {fileID: 8300000, guid: a48ad3535b1a73b49bb716160704f8e2, type: 3}
+  PenguingShoot: {fileID: 8300000, guid: 718f9a5c65e3adb48abdb3f634a05cc7, type: 3}
+  PenguingLaught: {fileID: 8300000, guid: 967404931c8626b4e94cad86ab160e80, type: 3}
+  PenguinChainsaw: {fileID: 8300000, guid: 2fce5754726eec54c842371598edf7f2, type: 3}
+  PenguinGainMoney: {fileID: 8300000, guid: 81466b327bf27a140a709d3a6f0bf97d, type: 3}
 --- !u!135 &135221748314952376
 SphereCollider:
   m_ObjectHideFlags: 1

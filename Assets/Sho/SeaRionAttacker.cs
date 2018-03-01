@@ -8,6 +8,8 @@ namespace Sho
 	{
 		SeaRion parent = null;
 
+        public AudioWalrusScript SoundScript;
+
 		[SerializeField, Header("Sec")]
 		private float attack_span = 0.5f;
 
@@ -58,6 +60,7 @@ namespace Sho
 
 		private void Attack()
 		{
+            SoundScript.WalrusHitSound();
 			List<Penguin> temp = new List<Penguin>();
 			foreach (var item in attacks_list)
 			{

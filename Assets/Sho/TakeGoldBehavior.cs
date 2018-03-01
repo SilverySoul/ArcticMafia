@@ -6,6 +6,7 @@ namespace Sho
 {
 	public class TakeGoldBehavior : Internal.PenguinBehavior
 	{
+        public AudioBearScript SoundScript;
 		private bool is_carring_gold = false;
 		public bool IsCarringGold
 		{
@@ -49,7 +50,7 @@ namespace Sho
 
 		public void TakeGold(int gold)
 		{
-			GoldCount += gold;
+            GoldCount += gold;
 			IsCarringGold = true;
 		}
 

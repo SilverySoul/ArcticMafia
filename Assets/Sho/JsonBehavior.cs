@@ -7,6 +7,7 @@ namespace Sho
 {
 	public class JsonBehavior : Internal.PenguinBehavior
 	{
+        public AudioPenguinScript SoundScript;
 		private bool is_attack_mode = false;
 		private bool IsAttackMode
 		{
@@ -15,6 +16,7 @@ namespace Sho
 			{
 				if (!is_attack_mode && value)
 				{
+                    SoundScript.PenguingLaughSound();
 					StartCoroutine(AttackExecuter());
 				}
 
@@ -44,6 +46,7 @@ namespace Sho
 		/// </summary>
 		public void Attack()
 		{
+            SoundScript.PenguingChainsawSound();
 			var chain = GameObject.Instantiate(Storage.Chainsaw);
 			chain.transform.position = this.transform.position + new Vector3(0.0f, 1.0f, 0.0f);
 			IsAttackMode = false;

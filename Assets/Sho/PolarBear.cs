@@ -7,7 +7,9 @@ namespace Sho
 {
 	public class PolarBear : MonoBehaviour
 	{
-		[SerializeField]
+        public AudioBearScript SoundScript;
+
+        [SerializeField]
 		private int money = 0;
 		public int Money
 		{
@@ -62,6 +64,7 @@ namespace Sho
 			{
 				Debug.Assert(false, "Plz Call CheckCanBuyPenguin before you call this func");
 			}
+            
 			Money -= penguins_price[(int)CurrentType];
 			return CurrentType;
 		}
@@ -77,7 +80,8 @@ namespace Sho
 					var gp = p.gameObject.GetComponent<TakeGoldBehavior>();
 					if(gp.IsCarringGold)
 					{
-						Money += gp.GoldCount;
+                        SoundScript.BearOKSound();
+                        Money += gp.GoldCount;
 						gp.IsCarringGold = false;
 						var nnn = gp.GetComponentInChildren<GoldBehavior>();
 						if (nnn)

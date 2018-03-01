@@ -10,7 +10,9 @@ namespace Sho
 		[SerializeField]
 		private Status status = new Status();
 
-		public int AttackPower { get { return status.AttackPower; } }
+        public AudioWalrusScript SoundScript;
+
+        public int AttackPower { get { return status.AttackPower; } }
 
 		private NavMeshAgent Agent { get; set; }
 
@@ -60,7 +62,7 @@ namespace Sho
 		// Use this for initialization
 		void Start()
 		{
-
+            SoundScript.WalrusRoarSound();
 			PenguinManager = GameObject.Find("PenguinManager").GetComponent<PenguinManager>();
 
 			StartCoroutine(SearchAndSetTarget());
@@ -124,6 +126,7 @@ namespace Sho
 
 		public bool Damage(int damage)
 		{
+            SoundScript.WalrusDieSound();
 			status.Hp -= damage;
 			return status.Hp <= 0 ? true : false;
 		}

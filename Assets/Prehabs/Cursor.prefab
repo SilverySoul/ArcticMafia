@@ -51,4 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ab2c92bfc704341abcb15fffc31d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundPlacementScript: {fileID: 114905804514248928, guid: 4a8fcee433ffb524da44708d864c339c,
+    type: 2}
   offset_height: 1

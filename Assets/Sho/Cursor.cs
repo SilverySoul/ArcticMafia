@@ -6,6 +6,8 @@ namespace Sho
 {
 	public class Cursor : MonoBehaviour
 	{
+        public AudioPenguinScript SoundPlacementScript;
+
 		private PenguinManager Manager { get; set; }
 		private PolarBear Bear { get; set; }
 
@@ -39,6 +41,7 @@ namespace Sho
 				{
 					if (hit.collider.gameObject.tag == "Ground")
 					{
+                        SoundPlacementScript.PenguingSpawnSound();
 						var p = hit.point;
 						p.y += offset_height;
 
@@ -48,14 +51,17 @@ namespace Sho
 						switch (type)
 						{
 							case PenguinManager.PenguinType.Json:
-								pen.gameObject.AddComponent<JsonBehavior>();	
-								break;
+								pen.gameObject.AddComponent<JsonBehavior>();
+                                pen.GetComponent<JsonBehavior>().SoundScript = SoundPlacementScript;
+                                break;
 							case PenguinManager.PenguinType.Gun:
 								pen.gameObject.AddComponent<GunBehavior>();
-								break;
+                                pen.GetComponent<GunBehavior>().SoundScript = SoundPlacementScript;
+
+                                break;
 							case PenguinManager.PenguinType.Gold:
 								pen.gameObject.AddComponent<TakeGoldBehavior>();
-								break;
+                                break;
 							default:
 								break;
 						}
