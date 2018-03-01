@@ -68,7 +68,6 @@ namespace Sho
 
 		private void OnTriggerEnter(Collider other)
 		{
-			Debug.Log(other.tag);
 			if(other.tag == "Penguin")
 			{
 				var p = other.GetComponent<Penguin>();

@@ -30,20 +30,22 @@ namespace Sho
 		{
 			if (Input.GetKey(KeyCode.W))
 			{
-				this.transform.Translate(this.transform.forward * Speed * Time.deltaTime);
+				//this.transform.Translate(this.transform.forward * Speed * Time.deltaTime);
+				this.transform.position += this.transform.forward * Speed * Time.deltaTime;
 			}
 			if (Input.GetKey(KeyCode.S))
 			{
-				this.transform.Translate(this.transform.forward * -Speed * Time.deltaTime);
+				//this.transform.Translate(this.transform.forward * -Speed * Time.deltaTime);
+				this.transform.position -= this.transform.forward * Speed * Time.deltaTime;
 			}
 			if (Input.GetKey(KeyCode.A))
 			{
-				this.transform.Translate(this.transform.right * -Speed * Time.deltaTime);
+				//this.transform.Translate(this.transform.right * -Speed * Time.deltaTime);
 				this.transform.Rotate(new Vector3(0, -rotate_rate, 0) * Time.deltaTime);
 			}
 			if (Input.GetKey(KeyCode.D))
 			{
-				this.transform.Translate(this.transform.right * Speed * Time.deltaTime);
+				//this.transform.Translate(this.transform.right * Speed * Time.deltaTime);
 				this.transform.Rotate(new Vector3(0, rotate_rate, 0) * Time.deltaTime);
 			}
 		}

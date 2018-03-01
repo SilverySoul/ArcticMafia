@@ -44,7 +44,9 @@ namespace Sho
 		{
 			if(collision.gameObject.tag == "SeaRion")
 			{
-				collision.gameObject.GetComponent<SeaRion>().Damage(1);
+				var n = collision.gameObject.GetComponent<SeaRion>();
+				if (!n) return;
+				n.Damage(1);
 				Destroy(this.gameObject);
 			}
 		}
