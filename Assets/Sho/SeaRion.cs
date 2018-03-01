@@ -28,13 +28,13 @@ namespace Sho
 			get { return attack_mode; }
 			set
 			{
-				if (value)
+				if(!value)
 				{
-					Agent.speed = 0.0f;
+					Agent.speed = status.Speed;
 				}
 				else
 				{
-					Agent.speed = status.Speed;
+					Agent.speed = 0.0f;
 				}
 				attack_mode = value;
 			}
@@ -46,9 +46,13 @@ namespace Sho
 			get { return rigid; }
 		}
 
+		private bool HasTarget { get; set; }
+
 		private void Awake()
 		{
 			Agent = this.GetComponent<NavMeshAgent>();
+			//Agent.updatePosition = false;
+			//Agent.updateRotation = false;
 			AttackMode = false;
 			rigid = this.GetComponent<Rigidbody>();
 		}
@@ -65,7 +69,17 @@ namespace Sho
 		// Update is called once per frame
 		void Update()
 		{
-			//Agent.speed = status.Speed;
+			//if (!HasTarget) return;
+			//var dir = Agent.nextPosition - this.transform.position;
+			//var smooth = Mathf.Min(1.0f, Time.deltaTime / 0.15f);
+			//var angle = Mathf.Acos(Vector3.Dot(transform.forward, dir.normalized)) * Mathf.Rad2Deg * smooth;
+
+			//var rot = Quaternion.AngleAxis(angle, Vector3.up);
+			//transform.forward = rot * transform.forward;
+
+			/*if (!AttackMode) */
+			//this.transform.position = Agent.nextPosition;
+			Agent.speed = status.Speed;
 			Agent.angularSpeed = status.Angular;
 		}
 
@@ -86,10 +100,12 @@ namespace Sho
 						debug_target_view.transform.position = dp;
 					}
 #endif
+					HasTarget = true;
 					yield return new WaitForSeconds(span_search_new_target);
 				}
 				else
 				{
+					HasTarget = false;
 					yield return null;
 				}
 			}

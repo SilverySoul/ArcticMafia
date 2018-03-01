@@ -40,7 +40,6 @@ namespace Sho
 
 		public void OnTriggerEnter(Collider other)
 		{
-			Debug.Log(other.tag);
 			if(other.tag == "SeaRion")
 			{
 				var rion = other.gameObject.GetComponent<SeaRion>();

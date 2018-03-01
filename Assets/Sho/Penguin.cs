@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Sho
 {
 
-	public class Penguin : MonoBehaviour , IStatusBehavior
+	public class Penguin : MonoBehaviour, IStatusBehavior
 	{
 		// unique
 		[SerializeField]
@@ -25,8 +25,8 @@ namespace Sho
 		[SerializeField]
 		private Status status = new Status();
 
-		public float Speed 
-		{ 
+		public float Speed
+		{
 			get { return status.Speed; }
 		}
 		public int AttackPower
@@ -53,11 +53,10 @@ namespace Sho
 		public bool Damage(int damage)
 		{
 			status.Hp -= damage;
-			if(status.Hp <= 0)
+			if (status.Hp <= 0)
 			{
 				Debug.Log("Killed Penguin No." + ID.ToString());
 				Destroy(this.gameObject);
-				manager.DeadPenguin(this);
 				return true;
 			}
 			return false;
@@ -65,7 +64,12 @@ namespace Sho
 
 		public void AddExp(int exp)
 		{
-			
+
+		}
+
+		public void OnDestroy()
+		{
+			manager.DeadPenguin(this);
 		}
 	}
 }

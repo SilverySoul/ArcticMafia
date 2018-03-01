@@ -79,7 +79,11 @@ namespace Sho
 					{
 						Money += gp.GoldCount;
 						gp.IsCarringGold = false;
-						Destroy(gp.GetComponentInChildren<GoldBehavior>().gameObject);
+						var nnn = gp.GetComponentInChildren<GoldBehavior>();
+						if (nnn)
+						{
+							Destroy(gp.GetComponentInChildren<GoldBehavior>().gameObject);
+						}
 					}
 				}
 			}

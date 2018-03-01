@@ -49,5 +49,12 @@ namespace Sho
 		{
 			get { return gun_attack_span_to_next_bullet; }
 		}
+
+		[SerializeField]
+		private ChainsawBehavior chainsaw;
+		public ChainsawBehavior Chainsaw
+		{
+			get { return chainsaw; }
+		}
 	}
 }
