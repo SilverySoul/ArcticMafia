@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 namespace Sho
 {
-	public class SeaRion : MonoBehaviour
+	public class SeaRion : MonoBehaviour, IStatusBehavior
 	{
 		[SerializeField]
 		private Status status = new Status();
@@ -103,6 +103,17 @@ namespace Sho
 		public void AddGold(int gold)
 		{
 			// later
+
+		}
+
+		public bool Damage(int damage)
+		{
+			status.Hp -= damage;
+			return status.Hp <= 0 ? true : false;
+		}
+
+		public void AddExp(int exp)
+		{
 
 		}
 	}

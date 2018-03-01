@@ -25,5 +25,29 @@ namespace Sho
 				return search_gold_span;
 			}
 		}
+
+		[SerializeField]
+		private BulletBehavior bullet_prehab = null;
+		public BulletBehavior BulletPrehab
+		{
+			get
+			{
+				return bullet_prehab;
+			}
+		}
+
+		[SerializeField]
+		private float gun_attack_span = 0.2f;
+		public float GunAttackSpan
+		{
+			get { return gun_attack_span; }
+		}
+
+		[SerializeField,Header("Fire time Per a Bullet")]
+		private float gun_attack_span_to_next_bullet = 0.2f;
+		public float GunAttackSpanToNextBullet
+		{
+			get { return gun_attack_span_to_next_bullet; }
+		}
 	}
 }

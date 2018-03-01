@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Sho
 {
 
-	public class Penguin : MonoBehaviour , StatusBehavior
+	public class Penguin : MonoBehaviour , IStatusBehavior
 	{
 		// unique
 		[SerializeField]

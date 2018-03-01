@@ -56,7 +56,7 @@ namespace Sho
 		}
 	}
 
-	public interface StatusBehavior
+	public interface IStatusBehavior
 	{
 		/// <summary>
 		/// Add Damage

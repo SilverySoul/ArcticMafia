@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33133598994396022}
   - component: {fileID: 65170581054604212}
   - component: {fileID: 23877874221363276}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4286933885731652}
   - component: {fileID: 23661745094405658}
   - component: {fileID: 102282778065341656}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: New Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 54393511745911954}
   - component: {fileID: 135221748314952376}
   - component: {fileID: 195842322424261344}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Penguin
   m_TagString: Penguin
   m_Icon: {fileID: 0}

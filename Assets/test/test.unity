@@ -449,25 +449,25 @@ Prefab:
       propertyPath: debug_target_view
       value: 
       objectReference: {fileID: 269193083}
-    - target: {fileID: 135907140125502878, guid: 6fc1a4c4c5695c449bd850088a4bfa0f,
-        type: 2}
-      propertyPath: m_Radius
-      value: 1.53
+    - target: {fileID: 1684261427997622, guid: 6fc1a4c4c5695c449bd850088a4bfa0f, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114865080331618378, guid: 6fc1a4c4c5695c449bd850088a4bfa0f,
-        type: 2}
-      propertyPath: angular
-      value: 120
+    - target: {fileID: 1788330607596358, guid: 6fc1a4c4c5695c449bd850088a4bfa0f, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114912836827864958, guid: 6fc1a4c4c5695c449bd850088a4bfa0f,
-        type: 2}
-      propertyPath: advance_dist
-      value: 15
+    - target: {fileID: 1779193578193990, guid: 6fc1a4c4c5695c449bd850088a4bfa0f, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114912836827864958, guid: 6fc1a4c4c5695c449bd850088a4bfa0f,
-        type: 2}
-      propertyPath: advance_velocity_max
-      value: 15
+    - target: {fileID: 1146341706386818, guid: 6fc1a4c4c5695c449bd850088a4bfa0f, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1146341706386818, guid: 6fc1a4c4c5695c449bd850088a4bfa0f, type: 2}
+      propertyPath: m_TagString
+      value: SeaRion
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6fc1a4c4c5695c449bd850088a4bfa0f, type: 2}
@@ -1086,7 +1086,7 @@ GameObject:
   - component: {fileID: 1040226923}
   - component: {fileID: 1040226925}
   - component: {fileID: 1040226924}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: New Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1192,6 +1192,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guns_attack_range: 50
   search_gold_span: 3
+  bullet_prehab: {fileID: 114817664019793706, guid: 3f6fe035d194faa4fae87d3c07a6a813,
+    type: 2}
+  gun_attack_span: 1
+  gun_attack_span_to_next_bullet: 0.2
 --- !u!4 &1058597556
 Transform:
   m_ObjectHideFlags: 0
@@ -1260,7 +1264,7 @@ GameObject:
   - component: {fileID: 1283177244}
   - component: {fileID: 1283177248}
   - component: {fileID: 1283177249}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PolarBear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1798,6 +1802,48 @@ MonoBehaviour:
   - {fileID: 616833547}
   mode_text: {fileID: 1339755888}
   type: 1
+--- !u!1001 &1851160435
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4452142902992432, guid: 3f6fe035d194faa4fae87d3c07a6a813, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 18.317
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452142902992432, guid: 3f6fe035d194faa4fae87d3c07a6a813, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 6.701481
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452142902992432, guid: 3f6fe035d194faa4fae87d3c07a6a813, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -12.558422
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452142902992432, guid: 3f6fe035d194faa4fae87d3c07a6a813, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452142902992432, guid: 3f6fe035d194faa4fae87d3c07a6a813, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452142902992432, guid: 3f6fe035d194faa4fae87d3c07a6a813, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452142902992432, guid: 3f6fe035d194faa4fae87d3c07a6a813, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452142902992432, guid: 3f6fe035d194faa4fae87d3c07a6a813, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3f6fe035d194faa4fae87d3c07a6a813, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1877933830
 Prefab:
   m_ObjectHideFlags: 0
