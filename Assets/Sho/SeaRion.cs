@@ -43,10 +43,17 @@ namespace Sho
 			}
 		}
 
+		private Rigidbody rigid = null;
+		public Rigidbody Rigid
+		{
+			get { return rigid; }
+		}
+
 		private void Awake()
 		{
 			Agent = this.GetComponent<NavMeshAgent>();
 			AttackMode = false;
+			rigid = this.GetComponent<Rigidbody>();
 		}
 
 		// Use this for initialization

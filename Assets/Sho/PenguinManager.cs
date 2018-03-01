@@ -9,6 +9,7 @@ namespace Sho
 	{
 		public enum PenguinType
 		{
+			// InitValue
 			// has Chainsaw
 			Json,
 			// has Gun
