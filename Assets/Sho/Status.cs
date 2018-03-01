@@ -47,6 +47,13 @@ namespace Sho
 			get { return exp; }
 			set { exp = value; }
 		}
+
+		[SerializeField]
+		private float angular = 30.0f;
+		public float Angular
+		{
+			get { return angular; }
+		}
 	}
 
 	public interface StatusBehavior

@@ -65,5 +65,24 @@ namespace Sho
 			Money -= penguins_price[(int)CurrentType];
 			return CurrentType;
 		}
+
+		private void OnTriggerEnter(Collider other)
+		{
+			Debug.Log(other.tag);
+			if(other.tag == "Penguin")
+			{
+				var p = other.GetComponent<Penguin>();
+				if(p.Type == PenguinManager.PenguinType.Gold)
+				{
+					var gp = p.gameObject.GetComponent<TakeGoldBehavior>();
+					if(gp.IsCarringGold)
+					{
+						Money += gp.GoldCount;
+						gp.IsCarringGold = false;
+						Destroy(gp.GetComponentInChildren<GoldBehavior>().gameObject);
+					}
+				}
+			}
+		}
 	}
 }

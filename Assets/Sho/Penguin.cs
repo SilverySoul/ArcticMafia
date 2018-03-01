@@ -25,7 +25,18 @@ namespace Sho
 		[SerializeField]
 		private Status status = new Status();
 
+		public float Speed 
+		{ 
+			get { return status.Speed; }
+		}
+		public int AttackPower
+		{
+			get { return status.AttackPower; }
+		}
+
 		private PenguinManager manager { get; set; }
+
+		public PenguinManager.PenguinType Type { get; set; }
 
 		// Use this for initialization
 		void Start()

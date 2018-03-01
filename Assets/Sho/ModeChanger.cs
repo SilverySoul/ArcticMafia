@@ -53,6 +53,9 @@ namespace Sho
 					case PenguinManager.PenguinType.Gun:
 						mode_text.text = "Gun Mode";
 						break;
+					case PenguinManager.PenguinType.Gold:
+						mode_text.text = "Gold Mode";
+						break;
 					default:
 						break;
 				}

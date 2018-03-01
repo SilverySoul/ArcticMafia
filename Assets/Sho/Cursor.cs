@@ -41,8 +41,24 @@ namespace Sho
 					{
 						var p = hit.point;
 						p.y += offset_height;
-						Bear.BuyPenguin();
-						Manager.CreatePenguins(p);
+
+						var pen = Manager.CreatePenguins(p);
+						if (!pen) return;
+						var type = Bear.BuyPenguin();
+						switch (type)
+						{
+							case PenguinManager.PenguinType.Json:
+								pen.gameObject.AddComponent<JsonBehavior>();	
+								break;
+							case PenguinManager.PenguinType.Gun:
+								pen.gameObject.AddComponent<GunBehavior>();
+								break;
+							case PenguinManager.PenguinType.Gold:
+								pen.gameObject.AddComponent<TakeGoldBehavior>();
+								break;
+							default:
+								break;
+						}
 					}
 				}
 			}

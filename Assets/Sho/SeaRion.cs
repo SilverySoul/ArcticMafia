@@ -17,9 +17,6 @@ namespace Sho
 		[SerializeField, Header("Sec")]
 		private float span_search_new_target = 3.0f;
 
-		[SerializeField]
-		private float angular = 30.0f;
-
 		private PenguinManager PenguinManager { get; set; }
 
 		[SerializeField]
@@ -29,7 +26,7 @@ namespace Sho
 		public bool AttackMode
 		{
 			get { return attack_mode; }
-			set 
+			set
 			{
 				if (value)
 				{
@@ -69,7 +66,7 @@ namespace Sho
 		void Update()
 		{
 			//Agent.speed = status.Speed;
-			Agent.angularSpeed = angular;
+			Agent.angularSpeed = status.Angular;
 		}
 
 		IEnumerator SearchAndSetTarget()
@@ -81,10 +78,13 @@ namespace Sho
 				{
 					Agent.SetDestination(p.transform.position);
 #if DEBUG
-					var dp = debug_target_view.transform.position;
-					dp.x = p.transform.position.x;
-					dp.z = p.transform.position.z;
-					debug_target_view.transform.position = dp;
+					if (debug_target_view)
+					{
+						var dp = debug_target_view.transform.position;
+						dp.x = p.transform.position.x;
+						dp.z = p.transform.position.z;
+						debug_target_view.transform.position = dp;
+					}
 #endif
 					yield return new WaitForSeconds(span_search_new_target);
 				}
@@ -98,6 +98,12 @@ namespace Sho
 		public void Attack(Penguin pen)
 		{
 			pen.Damage(status.AttackPower);
+		}
+
+		public void AddGold(int gold)
+		{
+			// later
+
 		}
 	}
 }
