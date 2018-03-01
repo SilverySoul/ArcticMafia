@@ -51,7 +51,11 @@ namespace Sho
 			while (true)
 			{
 				yield return new WaitForSeconds(Storage.GunAttackSpan);
-				for (int i = 0; i < 3; i++)
+
+				// RayCastTest
+				var ray = new Ray(this.transform.position, this.transform.forward);
+				RaycastHit hit_info;
+				if (Physics.Raycast(ray, out hit_info))
 				{
                     SoundScript.PenguinShootSound();
 					var n = Instantiate(Storage.BulletPrehab);
@@ -60,8 +64,22 @@ namespace Sho
 					n.AttackRange = Storage.GunsAttackRange;
 					n.transform.position = this.transform.position + this.transform.forward * 2;
 					yield return new WaitForSeconds(Storage.GunAttackSpanToNextBullet);
-				}
-			}
+					Debug.Log(hit_info.collider.gameObject.tag);
+					if (hit_info.collider.gameObject.tag == "SeaRion")
+					{
+						for (int i = 0; i < 3; i++)
+						{
+                        SoundScript.PenguinShootSound();
+							var n = Instantiate(Storage.BulletPrehab);
+							//n.transform.LookAt(Target.transform);
+							n.transform.rotation = this.transform.rotation;
+							n.AttackRange = Storage.GunsAttackRange;
+							n.transform.position = this.transform.position + this.transform.forward * 2;
+							yield return new WaitForSeconds(Storage.GunAttackSpanToNextBullet);
+						}
+					}
+                }
+            }
 		}
 	}
 }

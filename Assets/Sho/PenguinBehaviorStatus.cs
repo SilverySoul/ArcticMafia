@@ -56,5 +56,21 @@ namespace Sho
 		{
 			get { return chainsaw; }
 		}
+
+		[SerializeField]
+		private float chainsaw_attack_span = 1.0f;
+		public float ChainsawAttackSpan
+		{
+			get { return chainsaw_attack_span; }
+		}
+
+		[SerializeField]
+		private float chainsaw_attack_range = 5.0f;
+		public float ChainsawAttackRange
+		{
+			get { return chainsaw_attack_range; }
+		}
+
+
 	}
 }
