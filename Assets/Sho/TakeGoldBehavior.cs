@@ -7,6 +7,8 @@ namespace Sho
 	public class TakeGoldBehavior : Internal.PenguinBehavior
 	{
         public AudioBearScript SoundScript;
+
+		[SerializeField]
 		private bool is_carring_gold = false;
 		public bool IsCarringGold
 		{

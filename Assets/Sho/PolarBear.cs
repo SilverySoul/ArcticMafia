@@ -35,17 +35,23 @@ namespace Sho
 		[SerializeField, Header("Index is PenguinManager.PenguinType to Int")]
 		private int[] penguins_price = new int[2];
 
+		private Rigidbody Rigid { get; set; }
+
+		private SeStorage SeStorage { get; set; }
+
 		// Use this for initialization
 		void Start()
 		{
 			// Update Text
 			Money = Money;
+			Rigid = this.GetComponent<Rigidbody>();
+			SeStorage = GameObject.Find("SEStorage").GetComponent<SeStorage>();
 		}
 
 		// Update is called once per frame
 		void Update()
 		{
-
+			Rigid.velocity *= 0.8f;
 		}
 
 		/// <summary>
@@ -58,6 +64,7 @@ namespace Sho
 			if (Money < penguins_price[(int)CurrentType]) return false;
 			return true;
 		}
+
 		public PenguinManager.PenguinType BuyPenguin()
 		{
 			if(!CheckCanBuyPenguin())
@@ -69,10 +76,16 @@ namespace Sho
 			return CurrentType;
 		}
 
+		public void ToReturnPenguin(PenguinManager.PenguinType type)
+		{
+			Money += penguins_price[(int)CurrentType];
+		}
+
 		private void OnTriggerEnter(Collider other)
 		{
 			if(other.tag == "Penguin")
 			{
+				Debug.Log(other.gameObject.tag);
 				var p = other.GetComponent<Penguin>();
 				if(p.Type == PenguinManager.PenguinType.Gold)
 				{
@@ -87,6 +100,7 @@ namespace Sho
 						{
 							Destroy(gp.GetComponentInChildren<GoldBehavior>().gameObject);
 						}
+						SeStorage.PlayOneShot(2);
 					}
 				}
 			}

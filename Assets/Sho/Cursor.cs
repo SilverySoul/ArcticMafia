@@ -6,12 +6,12 @@ namespace Sho
 {
 	public class Cursor : MonoBehaviour
 	{
-        public AudioPenguinScript SoundPlacementScript;
+		public AudioPenguinScript SoundPlacementScript;
 
 		private PenguinManager Manager { get; set; }
 		private PolarBear Bear { get; set; }
 
-		[SerializeField,Header("Offset of Penguin when create")]
+		[SerializeField, Header("Offset of Penguin when create")]
 		private float offset_height = 1.0f;
 
 		public bool CanCreate { get; set; }
@@ -29,43 +29,39 @@ namespace Sho
 		{
 			if (CanCreate && Input.GetMouseButtonDown(0) && Bear.CheckCanBuyPenguin())
 			{
-				var ts = Input.mousePosition;
-
-				ts.x = Mathf.Clamp(ts.x, 0.0f, Screen.width);
-				ts.y = Mathf.Clamp(ts.y, 0.0f, Screen.height);
-
-				var tpr = Camera.main.ScreenPointToRay(ts);
-
-				var hit = new RaycastHit();
-				if (Physics.Raycast(tpr, out hit))
+				SoundPlacementScript.PenguingSpawnSound();
+				var p = Bear.transform.position;
+				//p.y += offset_height;
+				p += Bear.transform.forward * 2;
+				var type = Bear.BuyPenguin();
+				var pen = Manager.CreatePenguins(p, type);
+				if (!pen)
 				{
-					if (hit.collider.gameObject.tag == "Ground")
-					{
-                        SoundPlacementScript.PenguingSpawnSound();
-						var p = hit.point;
-						p.y += offset_height;
-
-						var pen = Manager.CreatePenguins(p);
-						if (!pen) return;
-						var type = Bear.BuyPenguin();
-						switch (type)
+					Bear.ToReturnPenguin(type);
+					return;
+				}
+				switch (type)
+				{
+					case PenguinManager.PenguinType.Json:
 						{
-							case PenguinManager.PenguinType.Json:
-								pen.gameObject.AddComponent<JsonBehavior>();
-                                pen.GetComponent<JsonBehavior>().SoundScript = SoundPlacementScript;
-                                break;
-							case PenguinManager.PenguinType.Gun:
-								pen.gameObject.AddComponent<GunBehavior>();
-                                pen.GetComponent<GunBehavior>().SoundScript = SoundPlacementScript;
-
-                                break;
-							case PenguinManager.PenguinType.Gold:
-								pen.gameObject.AddComponent<TakeGoldBehavior>();
-                                break;
-							default:
-								break;
+							var n = pen.gameObject.AddComponent<JsonBehavior>();
+							n.SoundScript = SoundPlacementScript;
 						}
-					}
+						break;
+					case PenguinManager.PenguinType.Gun:
+						{
+							var n = pen.gameObject.AddComponent<GunBehavior>();
+							n.SoundScript = SoundPlacementScript;
+						}
+						break;
+					case PenguinManager.PenguinType.Gold:
+						{
+							var n = pen.gameObject.AddComponent<TakeGoldBehavior>();
+							//n.SoundScript = SoundPlacementScript;
+						}
+						break;
+					default:
+						break;
 				}
 			}
 		}

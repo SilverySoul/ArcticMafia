@@ -21,7 +21,7 @@ namespace Sho
 		private int CurrentId { get; set; }
 
 		[SerializeField, Header("Penguin's Prehab")]
-		private Penguin source_of_penguin = null;
+		private List<Penguin> source_of_penguins = null;
 
 		public int PenguinsCountInField
 		{
@@ -48,14 +48,34 @@ namespace Sho
 
 		}
 
-		public Penguin CreatePenguins(Vector3 pos)
+		public Penguin CreatePenguins(Vector3 pos, PenguinType type)
 		{
 			if (PenguinsCountInField >= PenguinsCountInFieldMax)
 			{
 				Debug.Log("Penguins are Max Count In Field");
 				return null;
 			}
-			var ret = GameObject.Instantiate<Penguin>(source_of_penguin);
+			Penguin ret = null;
+			switch (type)
+			{
+				case PenguinType.Json:
+					{
+						ret = GameObject.Instantiate<Penguin>(source_of_penguins[0]);
+					}
+					break;
+				case PenguinType.Gun:
+					{
+						ret = GameObject.Instantiate<Penguin>(source_of_penguins[1]);
+					}
+					break;
+				case PenguinType.Gold:
+					{
+						ret = GameObject.Instantiate<Penguin>(source_of_penguins[2]);
+					}
+					break;
+				default:
+					break;
+			}
 			ret.ID = CurrentId++;
 			ret.transform.position = pos;
 			penguins.Add(ret);

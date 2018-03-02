@@ -19,10 +19,12 @@ namespace Sho
 		[SerializeField]
 		private float rotate_rate = 20.0f;
 
+		private Animator Anim { get; set; }
+
 		// Use this for initialization
 		void Start()
 		{
-
+			Anim = this.GetComponentInChildren<Animator>();
 		}
 
 		// Update is called once per frame
@@ -30,23 +32,28 @@ namespace Sho
 		{
 			if (Input.GetKey(KeyCode.W))
 			{
-				//this.transform.Translate(this.transform.forward * Speed * Time.deltaTime);
 				this.transform.position += this.transform.forward * Speed * Time.deltaTime;
 			}
 			if (Input.GetKey(KeyCode.S))
 			{
-				//this.transform.Translate(this.transform.forward * -Speed * Time.deltaTime);
 				this.transform.position -= this.transform.forward * Speed * Time.deltaTime;
 			}
 			if (Input.GetKey(KeyCode.A))
 			{
-				//this.transform.Translate(this.transform.right * -Speed * Time.deltaTime);
 				this.transform.Rotate(new Vector3(0, -rotate_rate, 0) * Time.deltaTime);
 			}
 			if (Input.GetKey(KeyCode.D))
 			{
-				//this.transform.Translate(this.transform.right * Speed * Time.deltaTime);
 				this.transform.Rotate(new Vector3(0, rotate_rate, 0) * Time.deltaTime);
+			}
+
+			if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+			{
+				Anim.SetBool("IsWalk", false);
+			}
+			else
+			{
+				Anim.SetBool("IsWalk", true);
 			}
 		}
 	}

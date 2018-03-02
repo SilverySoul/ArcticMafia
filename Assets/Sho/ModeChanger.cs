@@ -17,7 +17,7 @@ namespace Sho
 		}
 
 		[SerializeField]
-		private Text mode_text;
+		private GameObject[] penguins = new GameObject[3];
 
 		[SerializeField]
 		private PenguinManager.PenguinType type;
@@ -43,22 +43,25 @@ namespace Sho
 			{
 				break;
 			}
-			if (mode_text)
+			switch (type)
 			{
-				switch (type)
-				{
-					case PenguinManager.PenguinType.Json:
-						mode_text.text = "Json Mode";
-						break;
-					case PenguinManager.PenguinType.Gun:
-						mode_text.text = "Gun Mode";
-						break;
-					case PenguinManager.PenguinType.Gold:
-						mode_text.text = "Gold Mode";
-						break;
-					default:
-						break;
-				}
+				case PenguinManager.PenguinType.Json:
+					penguins[0].SetActive(true);
+					penguins[1].SetActive(false);
+					penguins[2].SetActive(false);
+					break;
+				case PenguinManager.PenguinType.Gun:
+					penguins[0].SetActive(false);
+					penguins[1].SetActive(true);
+					penguins[2].SetActive(false);
+					break;
+				case PenguinManager.PenguinType.Gold:
+					penguins[0].SetActive(false);
+					penguins[1].SetActive(false);
+					penguins[2].SetActive(true);
+					break;
+				default:
+					break;
 			}
 			Bear.CurrentType = type;
 		}

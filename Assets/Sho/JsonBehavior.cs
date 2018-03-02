@@ -24,6 +24,8 @@ namespace Sho
 			}
 		}
 
+		private Animator Anim { get; set; }
+
 		// Use this for initialization
 		void Start()
 		{
@@ -31,12 +33,15 @@ namespace Sho
 
 			Parent.Type = PenguinManager.PenguinType.Json;
 
+			Anim = this.GetComponentInChildren<Animator>();
+
 			StartCoroutine(AttackExecuter());
 		}
 
 		// Update is called once per frame
 		void Update()
 		{
+			if (!Target) return;
 			Agent.destination = Target.transform.position;
 			Agent.speed = Parent.Speed;
 		}
@@ -50,17 +55,24 @@ namespace Sho
 			var chain = GameObject.Instantiate(Storage.Chainsaw);
 			chain.transform.position = this.transform.position + new Vector3(0.0f, 1.0f, 0.0f);
 			IsAttackMode = false;
+			Anim.SetTrigger("Attack");
 		}
 
 		private IEnumerator AttackExecuter()
 		{
 			while (true)
 			{
-				if ((Target.transform.position - this.transform.position).magnitude <= 5.0f)
+				if (!Target) yield break;
+				if ((Target.transform.position - this.transform.position).magnitude <= Storage.ChainsawAttackRange)
 				{
 					Attack();
+					Agent.speed = 0.0f;
 				}
-				yield return new WaitForSeconds(0.1f);
+				else
+				{
+					Agent.speed = Parent.Speed;
+				}
+				yield return new WaitForSeconds(Storage.ChainsawAttackSpan);
 			}
 		}
 	}

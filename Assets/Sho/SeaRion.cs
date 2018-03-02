@@ -8,11 +8,11 @@ namespace Sho
 	public class SeaRion : MonoBehaviour, IStatusBehavior
 	{
 		[SerializeField]
-		private Status status = new Status();
+		public Status status = new Status();
 
-        public AudioWalrusScript SoundScript;
+		public AudioWalrusScript SoundScript;
 
-        public int AttackPower { get { return status.AttackPower; } }
+		public int AttackPower { get { return status.AttackPower; } }
 
 		private NavMeshAgent Agent { get; set; }
 
@@ -21,16 +21,13 @@ namespace Sho
 
 		private PenguinManager PenguinManager { get; set; }
 
-		[SerializeField]
-		private GameObject debug_target_view = null;
-
 		private bool attack_mode = false;
 		public bool AttackMode
 		{
 			get { return attack_mode; }
 			set
 			{
-				if(!value)
+				if (!value)
 				{
 					Agent.speed = status.Speed;
 				}
@@ -53,8 +50,6 @@ namespace Sho
 		private void Awake()
 		{
 			Agent = this.GetComponent<NavMeshAgent>();
-			//Agent.updatePosition = false;
-			//Agent.updateRotation = false;
 			AttackMode = false;
 			rigid = this.GetComponent<Rigidbody>();
 		}
@@ -62,7 +57,7 @@ namespace Sho
 		// Use this for initialization
 		void Start()
 		{
-            SoundScript.WalrusRoarSound();
+			SoundScript.WalrusRoarSound();
 			PenguinManager = GameObject.Find("PenguinManager").GetComponent<PenguinManager>();
 
 			StartCoroutine(SearchAndSetTarget());
@@ -71,16 +66,6 @@ namespace Sho
 		// Update is called once per frame
 		void Update()
 		{
-			//if (!HasTarget) return;
-			//var dir = Agent.nextPosition - this.transform.position;
-			//var smooth = Mathf.Min(1.0f, Time.deltaTime / 0.15f);
-			//var angle = Mathf.Acos(Vector3.Dot(transform.forward, dir.normalized)) * Mathf.Rad2Deg * smooth;
-
-			//var rot = Quaternion.AngleAxis(angle, Vector3.up);
-			//transform.forward = rot * transform.forward;
-
-			/*if (!AttackMode) */
-			//this.transform.position = Agent.nextPosition;
 			Agent.speed = status.Speed;
 			Agent.angularSpeed = status.Angular;
 		}
@@ -93,15 +78,6 @@ namespace Sho
 				if (p)
 				{
 					Agent.SetDestination(p.transform.position);
-#if DEBUG
-					if (debug_target_view)
-					{
-						var dp = debug_target_view.transform.position;
-						dp.x = p.transform.position.x;
-						dp.z = p.transform.position.z;
-						debug_target_view.transform.position = dp;
-					}
-#endif
 					HasTarget = true;
 					yield return new WaitForSeconds(span_search_new_target);
 				}
@@ -126,9 +102,17 @@ namespace Sho
 
 		public bool Damage(int damage)
 		{
-            SoundScript.WalrusDieSound();
 			status.Hp -= damage;
-			return status.Hp <= 0 ? true : false;
+			if (status.Hp <= 0)
+			{
+				SoundScript.WalrusDieSound();
+				Destroy(this.gameObject);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 
 		public void AddExp(int exp)

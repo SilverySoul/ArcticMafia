@@ -13,19 +13,24 @@ namespace Sho
 
 		private Coroutine attack = null;
 
+		private SeStorage SeStorage { get; set; }
+
+		private AudioSource[] srcs;
 
 		// Use this for initialization
 		void Start()
 		{
 			Target = GameObject.Find("SeaRion");
 			Parent.Type = PenguinManager.PenguinType.Gun;
+			SeStorage = GameObject.Find("SEStorage").GetComponent<SeStorage>();
+			srcs = this.GetComponentsInChildren<AudioSource>();
 		}
 
 		// Update is called once per frame
 		void Update()
 		{
 			shot_dist = Storage.GunsAttackRange;
-
+			if (!Target) return;
 			var v = Target.transform.position - this.transform.position;
 			if (v.magnitude > shot_dist)
 			{
@@ -57,9 +62,10 @@ namespace Sho
 				RaycastHit hit_info;
 				if (Physics.Raycast(ray, out hit_info))
 				{
-					Debug.Log(hit_info.collider.gameObject.tag);
 					if (hit_info.collider.gameObject.tag == "SeaRion")
 					{
+						//SeStorage.PlayOneShot(1);
+						srcs[1].PlayOneShot(srcs[1].clip);
 						for (int i = 0; i < 3; i++)
 						{
                             SoundScript.PenguinShootSound();

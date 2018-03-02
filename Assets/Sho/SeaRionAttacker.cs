@@ -64,10 +64,11 @@ namespace Sho
 			List<Penguin> temp = new List<Penguin>();
 			foreach (var item in attacks_list)
 			{
-				Debug.Log("The Boss Attack Penguin" + item.ID);
+				//Debug.Log("The Boss Attack Penguin" + item.ID);
 				if (!item.Damage(parent.AttackPower))
 				{
 					temp.Add(item);
+					item.Rigid.AddForce(item.transform.forward * -3);
 				}
 			}
 			attacks_list = temp;

@@ -55,7 +55,7 @@ Transform:
   m_GameObject: {fileID: 1800690327867894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.98, y: 47.266586, z: 14.95}
-  m_LocalScale: {x: 1.59424, y: 1.59424, z: 1.59424}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4633205514249336}
   m_Father: {fileID: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
   SoundScript: {fileID: 114905804514248928, guid: 4a8fcee433ffb524da44708d864c339c,
     type: 2}
   gold_count: 10
-  offset_y: 3
+  offset_y: 0.8
 --- !u!135 &135001236031132330
 SphereCollider:
   m_ObjectHideFlags: 1

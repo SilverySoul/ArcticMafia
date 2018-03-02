@@ -40,11 +40,17 @@ namespace Sho
 
 		public PenguinManager.PenguinType Type { get; set; }
 
+		private SeStorage SeStorage { get; set; }
+
+		public Rigidbody Rigid { get; set; }
+
 		// Use this for initialization
 		void Start()
 		{
             SoundScript.PenguingSpawnSound();
 			manager = GameObject.Find("PenguinManager").GetComponent<PenguinManager>();
+			SeStorage = GameObject.Find("SEStorage").GetComponent<SeStorage>();
+			Rigid = this.GetComponent<Rigidbody>();
 		}
 
 		// Update is called once per frame
@@ -61,8 +67,9 @@ namespace Sho
 			{
                 SoundScript.PenguingDieSound();
 
-                Debug.Log("Killed Penguin No." + ID.ToString());
+                //Debug.Log("Killed Penguin No." + ID.ToString());
 				Destroy(this.gameObject);
+				SeStorage.PlayOneShot(0);
 				return true;
 			}
 			return false;
